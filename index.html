@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Machine - Infinitely Customizable LLM Chatbot</title>
+    <link rel="icon" type="image/png" href="./c 38tcn.svg">
+    <link href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.10.0/styles/default.min.css" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/3b0473205a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="front.css">
+</head>
+<body>
+
+    <div id="chat-container">
+        <div id="authenticate">
+
+            <div id="authenticateButtons" class="button-box">
+                <button id="loginButton">Login</button>
+                <button id="signupButton">Signup</button>
+            </div>
+
+        </div>  
+
+        <div id="chat-box">
+            <div id="messages">
+                <div class="branch-container">
+                    <div class="branch">
+                        <div id="first-message" class="editable message user" contenteditable="true" data-placeholder="New message"></div>
+                    </div> 
+                </div>
+            </div> 
+        </div>
+    </div>
+    
+    
+    <script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/highlight.min.js'></script>
+    <script type="module" src="front.js"></script>
+</body>
+</html>

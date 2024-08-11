@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Signup</title>
+    <style>
+        .authenticate-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-box {
+            display: flex;
+            flex-direction: row;
+            margin: 5px 0;
+        }
+
+        .login-text {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px 0;
+            position: relative;
+            background: #ffebcc;
+            flex: 1;
+            box-sizing: border-box; /* Include padding in width */
+        }
+    </style>
+</head>
+<body>
+    <button id="signup">Signup</button>
+    <div id="authenticate"></div>
+
+    <script>
+        const signupButton = document.getElementById('signup');
+        signupButton.onclick = () => {
+            console.log('signup initiated');
+            const authenticateBox = document.getElementById('authenticate');
+            const signupForms = `
+                <div class="authenticate-box">
+                    <div class="input-box">
+                        <input type="text" id="username" class="login-text" placeholder="username" />
+                        <input type="password" id="password" class="login-text" placeholder="password" />
+                    </div>
+                    <button id="submit">Submit</button>
+                </div>
+            `;
+            authenticateBox.innerHTML = signupForms;
+        };
+    </script>
+</body>
+</html>

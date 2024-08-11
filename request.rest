@@ -1,0 +1,48 @@
+GET http://localhost:3000/users
+
+
+###
+POST http://localhost:3000/users/signup
+Content-Type: application/json
+
+{
+    "username": "noooooone",
+    "password": "1234"
+    
+}
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "username": "tahere",
+    "password": "1380"
+    
+}
+
+### 
+GET http://localhost:3000/users/profile
+
+### 
+GET http://localhost:3000/users/logout
+
+### 
+GET http://localhost:3000/test-session
+
+###
+HEAD http://localhost:3000/api/gpt/completions/stream
+
+###
+GET http://localhost:3000/api/gpt/completions/stream
+
+###
+POST http://localhost:3000/api/gpt/completions/stream
+Content-Type: application/json
+
+{
+    "messages":[
+        {"role":"system", "content":"count to 10"}
+    ],
+    "max_tokens": 10
+}
