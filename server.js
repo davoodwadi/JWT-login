@@ -6,10 +6,11 @@ import cors from 'cors';
 import { load, save, signup, login, authenticate, logout, profile, test } from './loginRequests.js';
 import { getHfCompletions, getStreamGPT, headStreamGpt, hfCompletions, hfCompletions70b, hfCompletions8b, streamGpt } from './apiRequests.js';
 
-const isHttps = false;
+const isHttps = true;
 const port = process.env.PORT || 3000;
 
 const app = express();
+console.log(process.env.NODE_ENV)
 // Add session middleware
 app.use(session({
     secret: 'random_string_secret_key',  // replace with a strong secret
@@ -17,7 +18,7 @@ app.use(session({
     saveUninitialized: false,
     // cookie: { secure: isHttps },     // Set to true if using HTTPS
     cookie: {
-        maxAge: 1000 * 60 * 60, // 1 hour (adjust as necessary)
+        maxAge: 1000 * 60 * 60 * 24 * 30, // days (adjust as necessary)
         httpOnly: true,
         secure: false, // Only use secure flag in production
         sameSite: 'Lax' // or 'Lax', based on your use case
