@@ -1,9 +1,16 @@
 // var escapeHtml = require('escape-html')
 import express from 'express'
 import session from 'express-session'
+import { fileURLToPath } from 'url';
+import path from 'path'
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 3000;
 const app = express()
+
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.use(session({
   secret: 'keyboard cat',
@@ -12,38 +19,27 @@ app.use(session({
 }))
 
 // middleware to test if authenticated
-function isAuthenticated (req, res, next) {
-  if (req.session.user) next()
-  else next('route')
-}
+// function isAuthenticated (req, res, next) {
+    
+//     next()
+// }
 
-app.get('/', isAuthenticated, function (req, res) {
-    console.log('*'.repeat(50))
-    console.log('logged in')
-    console.log('req.session')
-    console.log(req.session)
-    console.log('*'.repeat(50))
-  // this is only called when there is an authentication user due to isAuthenticated
-  res.send('hello, ' + req.session.user + '!' +
-    ' <a href="/logout">Logout</a>')
-})
-
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     console.log('*'.repeat(50))
     console.log('login')
     console.log('req.session')
     console.log(req.session)
     console.log('*'.repeat(50))
-  res.send('<form action="/login" method="post">' +
-    'Username: <input name="user"><br>' +
-    'Password: <input name="pass" type="password"><br>' +
-    '<input type="submit" text="Login"></form>')
-})
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  });
 
-app.post('/login', express.urlencoded({ extended: false }), function (req, res) {
+// app.post('/login', express.urlencoded({ extended: false }), function (req, res) {
+app.post('/login', express.json(), function (req, res) {
   // login logic to validate req.body.user and req.body.pass
   // would be implemented here. for this example any combo works
   console.log('*'.repeat(50))
+  console.log('login')
+  console.log('req.body')
   console.log(req.body)
   console.log(req.body.user)
   console.log(req.body.pass)
@@ -108,5 +104,16 @@ app.get('/logout', function (req, res, next) {
   console.log(req.session)
   console.log('*'.repeat(50))
 })
+
+app.get('/check', function (req, res, next) {
+    // logout logic
+    console.log('*'.repeat(50))
+    console.log('checking')
+    console.log('req.session')
+    console.log(req.session)
+    console.log('*'.repeat(50))
+    res.send(req.session.user)
+  })
+  
 
 app.listen(port)
