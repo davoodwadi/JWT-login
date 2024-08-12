@@ -2,6 +2,7 @@
 import express from 'express'
 import session from 'express-session'
 
+const port = process.env.PORT || 3000;
 const app = express()
 
 app.use(session({
@@ -108,4 +109,4 @@ app.get('/logout', function (req, res, next) {
   console.log('*'.repeat(50))
 })
 
-app.listen(3000)
+app.listen(port)
